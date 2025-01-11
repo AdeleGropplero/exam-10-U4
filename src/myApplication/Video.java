@@ -8,10 +8,10 @@ public class Video extends ElementoMultimediale implements Riproducibile, Lumino
     private int durata;
     private int luminosità;
 
-    public Video(String titolo, int durata){
+    public Video(String titolo, int luminosità, int volume, int durata ){
         super(titolo);
-        this.luminosità = 5;
-        this.volume = 5;
+        this.luminosità = luminosità;
+        this.volume = volume;
         this.durata = durata;
     }
 
