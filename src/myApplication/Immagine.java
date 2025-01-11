@@ -8,9 +8,9 @@ public class Immagine extends ElementoMultimediale implements Luminosità {
 
     private int luminosità;
 
-    public Immagine(String titolo) {
+    public Immagine(String titolo, int luminosità) {
         super(titolo);
-        this.luminosità = 5;
+        this.luminosità = luminosità;
     }
 
 /*    public void stampaTitolo() {
