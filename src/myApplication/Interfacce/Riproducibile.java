@@ -11,4 +11,6 @@ public interface Riproducibile {
     void abbassaVolume();
 
     void  play();
+
+    String esclamativi();
 }
