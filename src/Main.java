@@ -46,7 +46,7 @@ public class Main {
 
                 System.out.println("Quanto vuoi che sia alto il volume da 1 a 10 dell'audio `" + titoloMedia + "`?");
                 int volume = sc.nextInt();
-                if (volume > 0 && volume < 10) {
+                if (volume > 0 && volume <= 10) {
                     System.out.println("Volume alzato a " + volume);
                 } else {
                     System.out.println("Per favore seleziona un valore tra 1 e 10");
@@ -96,7 +96,7 @@ public class Main {
             }
         }
 
-        System.out.println("Ottimo, hai occupato la memoria disponibile! quale traccia vupi ascoltare ora?");
+        System.out.println("Ottimo, hai occupato la memoria disponibile! quale traccia vuoi ascoltare ora?");
         System.out.println(" - 1 - " + elemento[0].getTitolo());
         System.out.println(" - 2 - " + elemento[1].getTitolo());
         System.out.println(" - 3 - " + elemento[2].getTitolo());
