@@ -49,7 +49,8 @@ public class Main {
                                 System.out.println("Per favore seleziona un valore valido");
                                 System.out.println("Quanto vuoi che sia luminosa da 1 a 10 l'immagine `" + titoloMedia + "`?");
                             }
-                        } break;
+                        }
+                        break;
 
                         /*-----SECONDA POSSIBILITà : AUDIO----------------------------------------------------------------*/
                     } else if (selezioneMedia == 2) {
@@ -80,7 +81,8 @@ public class Main {
                             } else {
                                 System.out.println("Inserisci un valore, di durata, intero e posito per favore");
                             }
-                        } break;
+                        }
+                        break;
 
                         /*-----TERZA POSSIBILITà : VIDEO----------------------------------------------------------------*/
                     } else if (selezioneMedia == 3) {
@@ -97,7 +99,7 @@ public class Main {
                                 break;
                             } else {
                                 System.out.println("Per favore seleziona un valore valido");
-                                System.out.println("Quanto vuoi che sia luminosa da 1 a 10 il video `" + titoloMedia + "`?");
+                                System.out.println("Quanto vuoi che sia luminoso da 1 a 10 il video `" + titoloMedia + "`?");
                             }
                         }
 
@@ -127,7 +129,8 @@ public class Main {
                             }
                         }
 
-                    } break;
+                    }
+                    break;
                 } else {
                     System.out.println("Inserisci un valore da 1 a 3");
                 }
@@ -144,34 +147,41 @@ public class Main {
         System.out.println(" - 411 - per riprodurle tutte in sequenza!"); // 411 perchè sembra "All"
         System.out.println(" - 0 - per uscire dal programma!");
 
-        int selezioneFinale = sc.nextInt();
-        sc.nextLine();
+        int selezioneFinale;
 
-        if (selezioneFinale >= 1 && selezioneFinale <= 5) {
-            ElementoMultimediale selezionato = elemento[selezioneFinale - 1]; /*Poichè l'index dell'array è in base 0*/
-            if (selezionato instanceof Immagine) {
-                ((Immagine) selezionato).show(); /*qui eseguo il casting in modo da gestire dinamicamente il dato e ripeto sotto*/
-            } else if (selezionato instanceof Audio) {
-                ((Audio) selezionato).play();
-            } else if (selezionato instanceof Video) {
-                ((Video) selezionato).play();
-            }
-        } else if (selezioneFinale == 411) {
-            for (int i = 0; i < elemento.length; i++) {
-                ElementoMultimediale selezionato = elemento[i];
+        while (true) {
+            selezioneFinale = sc.nextInt();
+            sc.nextLine();
+
+            if (selezioneFinale >= 1 && selezioneFinale <= 5) {
+                ElementoMultimediale selezionato = elemento[selezioneFinale - 1]; /*Poichè l'index dell'array è in base 0*/
                 if (selezionato instanceof Immagine) {
-                    ((Immagine) selezionato).show();
+                    ((Immagine) selezionato).show(); /*qui eseguo il casting in modo da gestire dinamicamente il dato e ripeto sotto*/
                 } else if (selezionato instanceof Audio) {
                     ((Audio) selezionato).play();
                 } else if (selezionato instanceof Video) {
                     ((Video) selezionato).play();
-                }
+                } break;
+            } else if (selezioneFinale == 411) {
+                for (int i = 0; i < elemento.length; i++) {
+                    ElementoMultimediale selezionato = elemento[i];
+                    if (selezionato instanceof Immagine) {
+                        ((Immagine) selezionato).show();
+                    } else if (selezionato instanceof Audio) {
+                        ((Audio) selezionato).play();
+                    } else if (selezionato instanceof Video) {
+                        ((Video) selezionato).play();
+                    }
+                } break;
+            } else if (selezioneFinale == 0) {
+                System.out.println("Uscita dal programma.");
+                break;
+            } else {
+                System.out.println("Per favore, seleziona un valore valido.");
             }
-        } else if (selezioneFinale == 0) {
-            System.out.println("Uscita dal programma.");
-        } else {
-            System.out.println("Per favore, seleziona un valore valido.");
         }
+
+
         /*Idealmente si poteva implementare nella super classe un metodo di riproduzione media valido per tutte e tre le sotto classi
          * e fare l'override nelle singole classi. in questo modo si poteva evitare di fare l'instanceof di ogni casistica. Ma siccome il
          * compito chiedeva espressamente due metodi distinti ho preferito eseguire la comanda.*/
