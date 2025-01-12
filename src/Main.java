@@ -20,79 +20,118 @@ public class Main {
             System.out.println(" - 2 - per stampare un audio");
             System.out.println(" - 3 - per stampare un video");
 
-            int selezioneMedia = sc.nextInt();
-            sc.nextLine();  /*Necessario altrimenti il terminale mi saltava un comando*/
+            int selezioneMedia;
+            while (true) {
+                selezioneMedia = sc.nextInt();
+                sc.nextLine();  /*Necessario altrimenti il terminale mi saltava un comando*/
+                if (selezioneMedia >= 1 && selezioneMedia <= 3) {
+                    System.out.println(" ");
+                    /*-----PRIMA POSSIBILITà : IMMAGINE----------------------------------------------------------------*/
+                    if (selezioneMedia == 1) {
+                        System.out.println("Adesso scegli un titlo per la tua immagine:");
+                        String titoloMedia = sc.nextLine();
 
-            /*-----PRIMA POSSIBILITà : IMMAGINE----------------------------------------------------------------*/
-            if (selezioneMedia == 1) {
-                System.out.println("Adesso scegli un titlo per la tua immagine:");
-                String titoloMedia = sc.nextLine();
+                        System.out.println("Quanto vuoi che sia luminosa da 1 a 10 l'immagine `" + titoloMedia + "`?");
 
-                System.out.println("Quanto vuoi che sia luminosa da 1 a 10 l'immagine `" + titoloMedia + "`?");
+                        /*int luminosità;*/
+                        while (true) {
+                            // Creo un loop finchè l'utente non inserisce un valore corretto, purtroppo se inserisce un valore di testo
+                            // esce comunque dalla console. Questo metodo è valido solo in caso di numeri.
+                            int luminosità = sc.nextInt();
 
-                int luminosità = sc.nextInt();
-                if (luminosità > 0 && luminosità <= 10) {
-                    Immagine img = new Immagine(titoloMedia, luminosità);
-                    // img.show(); Commentato poichè voglio che la stampa definitiva avvenga alla fine
-                    elemento[indexCounter] = img;
-                    indexCounter++;
-                } else {
-                    System.out.println("Per favore seleziona un valore tra 1 e 10");
-                }
-                /*-----SECONDA POSSIBILITà : AUDIO----------------------------------------------------------------*/
-            } else if (selezioneMedia == 2) {
-                System.out.println("Adesso scegli un titlo per il tuo audio:");
-                String titoloMedia = sc.nextLine();
+                            if (luminosità > 0 && luminosità <= 10) {
+                                Immagine img = new Immagine(titoloMedia, luminosità);
+                                // img.show(); Commentato poichè voglio che la stampa definitiva avvenga alla fine
+                                elemento[indexCounter] = img;
+                                indexCounter++;
+                                break;
+                            } else {
+                                System.out.println("Per favore seleziona un valore valido");
+                                System.out.println("Quanto vuoi che sia luminosa da 1 a 10 l'immagine `" + titoloMedia + "`?");
+                            }
+                        } break;
 
-                System.out.println("Quanto vuoi che sia alto il volume da 1 a 10 dell'audio `" + titoloMedia + "`?");
-                int volume = sc.nextInt();
-                if (volume > 0 && volume <= 10) {
-                    System.out.println("Volume alzato a " + volume);
-                } else {
-                    System.out.println("Per favore seleziona un valore tra 1 e 10");
-                }
-                System.out.println("Quanti minuti dura l'audio `" + titoloMedia + "`?");
-                int durata = sc.nextInt();
-                if (durata > 0) {
-                    Audio a = new Audio(titoloMedia, volume, durata);
-                    // a.play();
-                    elemento[indexCounter] = a;
-                    indexCounter++;
-                } else {
-                    System.out.println("Inserisci un valore, intero e posito per favore");
-                }
-                /*-----TERZA POSSIBILITà : VIDEO----------------------------------------------------------------*/
-            } else if (selezioneMedia == 3) {
-                System.out.println("Adesso scegli un titlo per il tuo video:");
-                String titoloMedia = sc.nextLine();
+                        /*-----SECONDA POSSIBILITà : AUDIO----------------------------------------------------------------*/
+                    } else if (selezioneMedia == 2) {
+                        System.out.println("Adesso scegli un titlo per il tuo audio:");
+                        String titoloMedia = sc.nextLine();
 
-                System.out.println("Quanto vuoi che sia luminoso da 1 a 10 il video `" + titoloMedia + "`?");
+                        System.out.println("Quanto vuoi che sia alto il volume da 1 a 10 dell'audio `" + titoloMedia + "`?");
+                        int volume;
+                        while (true) {
+                            volume = sc.nextInt();
+                            if (volume > 0 && volume <= 10) {
+                                System.out.println("Volume alzato a " + volume);
+                                break;
+                            } else {
+                                System.out.println("Per favore seleziona un valore 'volume' compreso tra 1 e 10");
+                            }
+                        }
 
-                int luminosità = sc.nextInt();
-                if (luminosità > 0 && luminosità <= 10) {
-                    System.out.println("Luminosità impostata a " + luminosità);
+                        System.out.println("Quanti minuti dura l'audio `" + titoloMedia + "`?");
+                        while (true) {
+                            int durata = sc.nextInt();
+                            if (durata > 0) {
+                                Audio a = new Audio(titoloMedia, volume, durata);
+                                // a.play();  Commentato poichè voglio che la stampa definitiva avvenga alla fine
+                                elemento[indexCounter] = a;
+                                indexCounter++;
+                                break;
+                            } else {
+                                System.out.println("Inserisci un valore, di durata, intero e posito per favore");
+                            }
+                        } break;
+
+                        /*-----TERZA POSSIBILITà : VIDEO----------------------------------------------------------------*/
+                    } else if (selezioneMedia == 3) {
+                        System.out.println("Adesso scegli un titlo per il tuo video:");
+                        String titoloMedia = sc.nextLine();
+
+                        System.out.println("Quanto vuoi che sia luminoso da 1 a 10 il video `" + titoloMedia + "`?");
+
+                        int luminosità;
+                        while (true) {
+                            luminosità = sc.nextInt();
+                            if (luminosità > 0 && luminosità <= 10) {
+                                System.out.println("Luminosità impostata a " + luminosità);
+                                break;
+                            } else {
+                                System.out.println("Per favore seleziona un valore valido");
+                                System.out.println("Quanto vuoi che sia luminosa da 1 a 10 il video `" + titoloMedia + "`?");
+                            }
+                        }
+
+                        System.out.println("Quanto vuoi che sia alto il volume, da 1 a 10, del video `" + titoloMedia + "`?");
+                        int volume;
+                        while (true) {
+                            volume = sc.nextInt();
+                            if (volume > 0 && volume <= 10) {
+                                System.out.println("Volume alzato a " + volume);
+                                break;
+                            } else {
+                                System.out.println("Per favore seleziona un valore 'volume' intero tra 1 e 10");
+                            }
+                        }
+
+                        System.out.println("Quanti minuti dura il video `" + titoloMedia + "`?");
+                        while (true) {
+                            int durata = sc.nextInt();
+                            if (durata > 0) {
+                                Video v = new Video(titoloMedia, luminosità, volume, durata);
+                                // v.play();  Commentato poichè voglio che la stampa definitiva avvenga alla fine
+                                elemento[indexCounter] = v;
+                                indexCounter++;
+                                break;
+                            } else {
+                                System.out.println("Inserisci un valore, di durata, intero e posito per favore");
+                            }
+                        }
+
+                    } break;
                 } else {
-                    System.out.println("Per favore seleziona un valore intero tra 1 e 10");
+                    System.out.println("Inserisci un valore da 1 a 3");
                 }
-                System.out.println("Quanto vuoi che sia alto il volume, da 1 a 10, del video `" + titoloMedia + "`?");
-                int volume = sc.nextInt();
-                if (volume > 0 && volume <= 10) {
-                    System.out.println("Volume alzato a " + volume);
-                } else {
-                    System.out.println("Per favore seleziona un valore intero tra 1 e 10");
-                }
-                System.out.println("Quanti minuti dura il video `" + titoloMedia + "`?");
-                int durata = sc.nextInt();
-                if (durata > 0) {
-                    Video v = new Video(titoloMedia, luminosità, volume, durata);
-                    // v.play();
-                    elemento[indexCounter] = v;
-                    indexCounter++;
-                } else {
-                    System.out.println("Inserisci un valore, intero e posito per favore");
-                }
-            } else {
-                System.out.println("Inserisci un valore da 1 a 3");
+
             }
         }
 
@@ -133,6 +172,9 @@ public class Main {
         } else {
             System.out.println("Per favore, seleziona un valore valido.");
         }
+        /*Idealmente si poteva implementare nella super classe un metodo di riproduzione media valido per tutte e tre le sotto classi
+         * e fare l'override nelle singole classi. in questo modo si poteva evitare di fare l'instanceof di ogni casistica. Ma siccome il
+         * compito chiedeva espressamente due metodi distinti ho preferito eseguire la comanda.*/
     }
 }
 
@@ -164,3 +206,6 @@ public class Main {
         v1.abbassaLuminosità();
         v1.abbassaLuminosità();
         v1.play();*/
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
